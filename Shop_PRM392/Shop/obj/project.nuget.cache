@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+YQxAzyie/g=",
+  "dgSpecHash": "wpKlL4hFgd8=",
   "success": true,
-  "projectFilePath": "D:\\Coding\\Semester8\\PRN231\\Shop_PRM392\\Shop\\Shop.csproj",
+  "projectFilePath": "D:\\Coding\\Semester8\\PRM392\\Project_Shop\\Shop_PRM392\\Shop\\Shop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.36\\microsoft.entityframeworkcore.6.0.36.nupkg.sha512",

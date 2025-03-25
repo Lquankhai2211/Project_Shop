@@ -56,7 +56,7 @@ namespace Shop.Controllers
             HttpContext.Session.SetString("Username", user.Username);
             HttpContext.Session.SetInt32("RoleId", user.RoleId);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Order");
         }
 
         public IActionResult Logout()

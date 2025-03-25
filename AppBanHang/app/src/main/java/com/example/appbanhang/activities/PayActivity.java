@@ -81,6 +81,7 @@ public class PayActivity extends AppCompatActivity {
                             .subscribe(
                                     userModel -> {
                                         Toast.makeText(getApplicationContext(),"Thành công",Toast.LENGTH_SHORT).show();
+                                        Utils.carts.clear();
                                         Intent intent = new Intent(getApplicationContext(), MainPage.class);
                                         startActivity(intent);
                                         finish();

@@ -1,0 +1,73 @@
+﻿@model Shop.ViewModels.OrderEditViewModel
+
+@{
+    ViewData["Title"] = "Sửa trạng thái đơn hàng";
+}
+
+<h2>Sửa trạng thái đơn hàng</h2>
+
+<h3>Thông tin khách hàng</h3>
+<table class="table table-bordered">
+    <tr>
+        <th>Tên đăng nhập</th>
+        <td>@(Model.User?.Username ?? "Không có thông tin")</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>@(Model.User?.Email ?? "Không có thông tin")</td>
+    </tr>
+    <tr>
+        <th>Số điện thoại</th>
+        <td>@Model.Order.Phone</td>
+    </tr>
+    <tr>
+        <th>Địa chỉ</th>
+        <td>@Model.Order.Address</td>
+    </tr>
+</table>
+
+<form method="post">
+    @{
+        bool isDisabled = Model.Order.Status == "Đã hoàn thành" || Model.Order.Status == "Đã hủy";
+    }
+    <div class="form-group">
+        <label>Trạng thái đơn hàng</label>
+        <select class="form-control" name="Status" @(isDisabled ? "disabled" : "")>
+            <option value="Đang xử lý" selected="@(Model.Order.Status == "Đang xử lý" ? "selected" : null)">Đang xử lý</option>
+            <option value="Đã hoàn thành" selected="@(Model.Order.Status == "Đã hoàn thành" ? "selected" : null)">Đã hoàn thành</option>
+            <option value="Đã hủy" selected="@(Model.Order.Status == "Đã hủy" ? "selected" : null)">Đã hủy</option>
+            <option value="Đang chuẩn bị hàng" selected="@(Model.Order.Status == "Đang chuẩn bị hàng" ? "selected" : null)">Đang chuẩn bị hàng</option>
+            <option value="Đang giao" selected="@(Model.Order.Status == "Đang giao" ? "selected" : null)">Đang giao</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success" @(isDisabled ? "disabled" : "")>Lưu</button>
+    <a class="btn btn-secondary" href="@Url.Action("Index", "Order")">Quay lại</a>
+</form>
+
+
+<h3>Chi tiết đơn hàng</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Hình ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detail in Model.Order.OrderDetails)
+        {
+            var product = Model.Products.FirstOrDefault(p => p.Id == detail.ProductId);
+            if (product != null)
+            {
+                <tr>
+                    <td><img src="@product.ProductImage" alt="Hình ảnh" style="width: 50px; height: 50px;"></td>
+                    <td>@product.ProductName</td>
+                    <td>@detail.Amount</td>
+                    <td>@detail.Price VNĐ</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
